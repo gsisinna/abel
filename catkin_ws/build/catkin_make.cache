@@ -1,0 +1,2 @@
+dynamixel-workbench-msgs/dynamixel_workbench_msgs:dynamixel-workbench/dynamixel_workbench:dynamixel-workbench/dynamixel_workbench_controllers:dynamixel-workbench/dynamixel_workbench_operators:dynamixel-workbench/dynamixel_workbench_toolbox:dynamixel_sdk:dynamixel_sdk_examples
+-DCATKIN_DEVEL_PREFIX=/home/gabriele/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/gabriele/catkin_ws/install -G Unix Makefiles
