@@ -1,0 +1,8 @@
+prefix=/home/gabriele/catkin_ws/devel
+
+Name: open_manipulator_p_libs
+Description: Description of open_manipulator_p_libs
+Version: 1.0.0
+Cflags: -I/home/gabriele/catkin_ws/src/open_manipulator_p/open_manipulator_p_libs/include -I/usr/include/eigen3
+Libs: -L${prefix}/lib -lopen_manipulator_p_libs
+Requires: roscpp robotis_manipulator dynamixel_workbench_toolbox cmake_modules

@@ -1,0 +1,8 @@
+prefix=/home/gabriele/catkin_ws/devel
+
+Name: open_manipulator_p_teleop
+Description: Description of open_manipulator_p_teleop
+Version: 1.0.0
+Cflags: -I/home/gabriele/catkin_ws/src/open_manipulator_p/open_manipulator_p_teleop/include
+Libs: -L${prefix}/lib 
+Requires: roscpp std_msgs sensor_msgs open_manipulator_msgs
