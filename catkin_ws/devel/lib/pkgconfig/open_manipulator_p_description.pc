@@ -1,8 +1,0 @@
-prefix=/home/gabriele/catkin_ws/devel
-
-Name: open_manipulator_p_description
-Description: Description of open_manipulator_p_description
-Version: 1.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
