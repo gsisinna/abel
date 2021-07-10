@@ -1,0 +1,7 @@
+-- PRIORITÀ --
+
+1. Sistemare codice per tutti i motori (15)
+2. Collo per gaze
+3. Braccia per gestures bimanuali
+4. MoveIt e cinematica inversa
+5. Compliance control

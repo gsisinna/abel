@@ -171,6 +171,8 @@ include_directories(
 catkin_install_python(PROGRAMS
   scripts/AbelMove.py
   scripts/move_abel.py
+  scripts/move_abel_arms.py
+  scripts/gestures.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
  )
 

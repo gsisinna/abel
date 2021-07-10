@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from math import pi
 import rospy
@@ -53,13 +53,14 @@ class AbelMove(object):
                 rospy.logerr("Current "+self.joint_states_topic_name+" not ready yet, retrying ")
 
     def move_all_joints(self, point):
-
         rospy.logwarn("move_all_joints STARTED")
         
         joints_str = JointTrajectory()
         joints_str.header = Header()
         joints_str.header.stamp = rospy.Time.now()
-        joints_str.joint_names = ['shoulder1', 'shoulder2', 'biceps', 'elbow', 'forearm']
+        joints_str.joint_names = ['neck_1', 'neck_2', 'neck_3', 'neck_4', 'neck_5',
+                                  'shoulder_l1', 'shoulder_l2', 'biceps_l', 'elbow_l', 'forearm_l', 
+                                  'shoulder_r1', 'shoulder_r2', 'biceps_r', 'elbow_r', 'forearm_r' ]
     
         #Adding the point to the points list
         joints_str.points.append(point)
@@ -125,7 +126,6 @@ class AbelMove(object):
 
     def get_joint_names(self):
         return self.joint_states_msg.name
-
 
     def get_motor(self, msg):
         self.get_motor_msg = msg

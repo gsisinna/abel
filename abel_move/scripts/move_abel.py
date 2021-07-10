@@ -55,7 +55,6 @@ class AbelMove(object):
                 rospy.logerr("Current "+self.joint_states_topic_name+" not ready yet, retrying ")
 
     def move_all_joints(self, point):
-
         rospy.logwarn("move_all_joints STARTED")
         
         joints_str = JointTrajectory()
@@ -218,7 +217,7 @@ def capture_position(lag):
     rospy.loginfo("Now you have _lag_ seconds to create a pose...")
     rospy.sleep(lag)
     set_joints_torque(1)
-    rospy.loginfo("The values of the joints are: ")
+    rospy.loginfo("The values of the joints (check ordering) are: ")
     pose = abel_obj.joint_states_msg
     rospy.loginfo(pose.position)
 
