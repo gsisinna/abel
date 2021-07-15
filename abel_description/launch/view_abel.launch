@@ -2,7 +2,7 @@
 <arg name="model" />
 <!-- Parsing xacro and loading robot_description parameter -->
 <param name="robot_description" textfile="$(find
-abel_description)/urdf/iiwa.urdf" />$(find abel_description)/urdf/ abel_arms.xacro " />
+abel_description)/urdf/abel_moveit_v002.urdf" />$(find abel_description)/urdf/ abel_moveit_v002.urdf " />
 <!-- Setting gui parameter to true for display joint slider, for getting
 joint control -->
 <param name="use_gui" value="true"/>

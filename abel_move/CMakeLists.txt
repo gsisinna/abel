@@ -9,10 +9,6 @@ project(abel_move)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   cmake_modules
-  dynamixel_workbench
-  dynamixel_workbench_controllers
-  dynamixel_workbench_msgs
-  dynamixel_workbench_operators
   eigen
   geometry_msgs
   roscpp
@@ -20,6 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   trajectory_msgs
   yaml-cpp
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -56,11 +53,11 @@ catkin_python_setup()
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+add_message_files(
+  FILES
+  gesture.msg
+  lookat.msg
+)
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -116,6 +113,7 @@ catkin_package(
 #  LIBRARIES abel_move
 #  CATKIN_DEPENDS cmake_modules dynamixel_workbench dynamixel_workbench_controllers dynamixel_workbench_msgs dynamixel_workbench_operators eigen geometry_msgs roscpp rospy sensor_msgs trajectory_msgs yaml-cpp
 #  DEPENDS system_lib
+  CATKIN_DEPENDS message_runtime
 )
 
 ###########
@@ -169,10 +167,11 @@ include_directories(
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
-  scripts/AbelMove.py
-  scripts/move_abel.py
-  scripts/move_abel_arms.py
-  scripts/gestures.py
+  scripts/modules/AbelMove.py
+  scripts/modules/AbelGesture.py
+  scripts/main.py
+  scripts/MoveAbelArms.py
+  scripts/MoveAbelNeck.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
  )
 
@@ -217,10 +216,22 @@ catkin_install_python(PROGRAMS
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-catkin_install_python(PROGRAMS script/move_abel.py
+catkin_install_python(PROGRAMS script/main.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
-catkin_install_python(PROGRAMS script/AbelMove.py
+catkin_install_python(PROGRAMS script/MoveAbelArms.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+catkin_install_python(PROGRAMS script/MoveAbelNeck.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+catkin_install_python(PROGRAMS script//modules/AbelMove.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+catkin_install_python(PROGRAMS script/modules/AbelGesture.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

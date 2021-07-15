@@ -29,7 +29,7 @@
   <link name="link_D6_D7">
     <visual>
       <geometry>
-        <cylinder length="0.1" radius="0.02"/>
+        <cylinder length="0.1" radius="0.04"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 .8 1"/>
@@ -37,7 +37,7 @@
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.1" radius="0.02"/>
+        <cylinder length="0.1" radius="0.04"/>
       </geometry>
     </collision>
   </link>
@@ -47,15 +47,15 @@
     <child link="link_D7_D8"/>
     <origin xyz="0 0 0.08" rpy="-1.57 -1.57 0" />
     <axis xyz="0 0 1" />
-    <limit effort="300" lower="-0.0872665" upper="1.55" velocity="10"/>
-    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-0.09" soft_upper_limit="1.57"/>
+    <limit effort="300" lower="-0.0872665" upper="2.96706" velocity="10"/>
+    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-0.09" soft_upper_limit="2.97"/>
     <dynamics damping="0.5"/>
   </joint>
 
   <link name="link_D7_D8">
     <visual>
       <geometry>
-        <cylinder length="0.02" radius="0.02"/>
+        <cylinder length="0.09" radius="0.04"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 .8 1"/>
@@ -63,7 +63,7 @@
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.02" radius="0.02"/>
+        <cylinder length="0.09" radius="0.04"/>
       </geometry>
     </collision>
   </link>
@@ -73,25 +73,23 @@
     <child link="link_D8_D9"/>
     <origin xyz="0 -0.095 0" rpy="-1.57 3.14 0" />
     <axis xyz="0 0 1" />
-    <limit effort="300" lower="-1.25" upper="1" velocity="10"/>
-    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-1.55" soft_upper_limit="1.1"/>
+    <limit effort="300" lower="-2.18166" upper="0.610865" velocity="10"/>
+    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-2.19" soft_upper_limit="0.62"/>
     <dynamics damping="0.5"/>
   </joint>
 
   <link name="link_D8_D9">
     <visual>
-    <origin rpy="0 0 0" xyz="0 0 -0.015"/>
       <geometry>
-        <cylinder length="0.175" radius="0.02"/>
+        <cylinder length="0.2" radius="0.04"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 .8 1"/>
       </material>
     </visual>
     <collision>
-    <origin rpy="0 0 0" xyz="0 0 -0.015"/>
       <geometry>
-        <cylinder length="0.175" radius="0.02"/>
+        <cylinder length="0.2" radius="0.04"/>
       </geometry>
     </collision>
   </link>
@@ -109,7 +107,7 @@
   <link name="link_D9_D10">
     <visual>
       <geometry>
-        <cylinder length="0.06" radius="0.02"/>
+        <cylinder length="0.08" radius="0.03"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 .8 1"/>
@@ -117,7 +115,7 @@
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.06" radius="0.02"/>
+        <cylinder length="0.08" radius="0.03"/>
       </geometry>
     </collision>
   </link>
@@ -134,18 +132,18 @@
 
   <link name="link_D10_EE">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 -0.125"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.1"/>
       <geometry>
-        <cylinder length="0.325" radius="0.02"/>
+        <cylinder length="0.35" radius="0.03"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 .8 1"/>
       </material>
     </visual>
     <collision>
-    <origin rpy="0 0 0" xyz="0 0 -0.125"/>
+    <origin rpy="0 0 0" xyz="0 0 -0.1"/>
       <geometry>
-        <cylinder length="0.325" radius="0.02"/>
+        <cylinder length="0.35" radius="0.04"/>
       </geometry>
     </collision>
   </link>
@@ -163,7 +161,7 @@
   <link name="link_EE_L">
     <visual>
       <geometry>
-        <cylinder length="0.04" radius="0.03"/>
+        <cylinder length="0.06" radius="0.04"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 .8 1"/>
@@ -171,7 +169,7 @@
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.06" radius="0.03"/>
+        <cylinder length="0.06" radius="0.04"/>
       </geometry>
     </collision>
   </link>
@@ -182,15 +180,15 @@
     <child link="link_D11_D12"/>
     <origin xyz="0.10 0 0" rpy="0 -1.57 3.14" />
     <axis xyz="0 0 1" />
-    <limit effort="300" lower="-0.26" upper="3.14" velocity="10"/>
-    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-0.3" soft_upper_limit="3.15"/>
+    <limit effort="300" lower="-3.14" upper="0.261799" velocity="10"/>
+    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-3.15" soft_upper_limit="0.27"/>
     <dynamics damping="0.5"/>
   </joint>
 
   <link name="link_D11_D12">
     <visual>
       <geometry>
-        <cylinder length="0.1" radius="0.02"/>
+        <cylinder length="0.1" radius="0.04"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 .8 1"/>
@@ -198,7 +196,7 @@
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.1" radius="0.02"/>
+        <cylinder length="0.1" radius="0.04"/>
       </geometry>
     </collision>
   </link>
@@ -208,15 +206,15 @@
     <child link="link_D12_D13"/>
     <origin xyz="0 0 0.08" rpy="-1.57 -1.57 0" />
     <axis xyz="0 0 1" />
-    <limit effort="300" lower="-0.0872665" upper="1.55" velocity="10"/>
-    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-0.09" soft_upper_limit="1.57"/>
+    <limit effort="300" lower="-0.0872665" upper="2.96706" velocity="10"/>
+    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-0.09" soft_upper_limit="2.97"/>
     <dynamics damping="0.5"/>
   </joint>
 
   <link name="link_D12_D13">
     <visual>
       <geometry>
-        <cylinder length="0.02" radius="0.02"/>
+        <cylinder length="0.09" radius="0.04"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 .8 1"/>
@@ -224,7 +222,7 @@
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.02" radius="0.02"/>
+        <cylinder length="0.09" radius="0.04"/>
       </geometry>
     </collision>
   </link>
@@ -234,25 +232,23 @@
     <child link="link_D13_D14"/>
     <origin xyz="0 -0.095 0" rpy="-1.57 0 0" />
     <axis xyz="0 0 1" />
-    <limit effort="300" lower="-1" upper="1.25" velocity="10"/>
-    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-1.1" soft_upper_limit="1.55"/>
+    <limit effort="300" lower="-2.18166" upper="0.610865" velocity="10"/>
+    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-2.19" soft_upper_limit="0.62"/>
     <dynamics damping="0.5"/>
   </joint>
 
   <link name="link_D13_D14">
     <visual>
-    <origin rpy="0 0 0" xyz="0 0 -0.015"/>
       <geometry>
-        <cylinder length="0.175" radius="0.02"/>
+        <cylinder length="0.2" radius="0.04"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 .8 1"/>
       </material>
     </visual>
     <collision>
-    <origin rpy="0 0 0" xyz="0 0 -0.015"/>
       <geometry>
-        <cylinder length="0.175" radius="0.02"/>
+        <cylinder length="0.2" radius="0.04"/>
       </geometry>
     </collision>
   </link>
@@ -262,15 +258,15 @@
     <child link="link_D14_D15"/>
     <origin xyz="0 0 -0.125" rpy="0 -1.57 0" />
     <axis xyz="0 0 1" />
-    <limit effort="300" lower="-2.26893" upper="0" velocity="10"/>
-    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-2.27" soft_upper_limit="0.1"/>
+    <limit effort="300" lower="0" upper="2.26893" velocity="10"/>
+    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-0.1" soft_upper_limit="2.27"/>
     <dynamics damping="0.5"/>
   </joint>
 
   <link name="link_D14_D15">
     <visual>
       <geometry>
-        <cylinder length="0.06" radius="0.02"/>
+        <cylinder length="0.08" radius="0.03"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 .8 1"/>
@@ -278,7 +274,7 @@
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.06" radius="0.02"/>
+        <cylinder length="0.08" radius="0.03"/>
       </geometry>
     </collision>
   </link>
@@ -295,18 +291,18 @@
 
   <link name="link_D15_EE">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 -0.125"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.1"/>
       <geometry>
-        <cylinder length="0.325" radius="0.02"/>
+        <cylinder length="0.35" radius="0.03"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 .8 1"/>
       </material>
     </visual>
     <collision>
-    <origin rpy="0 0 0" xyz="0 0 -0.125"/>
+    <origin rpy="0 0 0" xyz="0 0 -0.1"/>
       <geometry>
-        <cylinder length="0.325" radius="0.05"/>
+        <cylinder length="0.35" radius="0.04"/>
       </geometry>
     </collision>
   </link>
@@ -324,7 +320,7 @@
   <link name="link_EE_R">
     <visual>
       <geometry>
-        <cylinder length="0.04" radius="0.03"/>
+        <cylinder length="0.06" radius="0.04"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 .8 1"/>
@@ -332,7 +328,7 @@
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.04" radius="0.03"/>
+        <cylinder length="0.06" radius="0.04"/>
       </geometry>
     </collision>
   </link>
