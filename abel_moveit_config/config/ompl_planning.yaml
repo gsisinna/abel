@@ -183,7 +183,7 @@ right_arm:
     - SPARStwo
   projection_evaluator: joints(joint_D11,joint_D12)
   longest_valid_segment_fraction: 0.005
-right_hand:
+left_ee:
   planner_configs:
     - AnytimePathShortening
     - SBL
@@ -209,7 +209,7 @@ right_hand:
     - LazyPRMstar
     - SPARS
     - SPARStwo
-left_hand:
+right_ee:
   planner_configs:
     - AnytimePathShortening
     - SBL

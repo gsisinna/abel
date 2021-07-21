@@ -2,5 +2,5 @@ clc
 clear all
 close all 
 
-robot = importrobot('abel_arms_full.urdf')
+robot = importrobot('abel_left_arm.urdf')
 show(robot)

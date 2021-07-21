@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 #!/usr/bin/env python3
 
 import rospy
@@ -7,35 +9,37 @@ from dynamixel_workbench_msgs.msg import DynamixelState, DynamixelStateList
 from dynamixel_workbench_msgs.srv import DynamixelCommand, DynamixelCommandRequest
 from std_msgs.msg import Header
 
+
 #Import all the class attributes, methods and gestures class
 from modules.AbelMove import *
 from modules.AbelGesture import *
 
+abel = AbelMove()
+gesture = AbelGesture()
+
 import os
-import rbdl
+import pinocchio
+
 import numpy as np
+from numpy.linalg import norm, solve
 
 class MoveAbelArms(object):
     def __init__(self):
-        #Create the kinematics chain model by using the URDF
-        self.model = rbdl.loadModel("/home/gabriele/catkin_ws/src/abel_move/scripts/abel_arms_full.urdf")
-
         #Create the object for Abel
         abel = AbelMove()
-        gesture = AbelGesture()
-
+        gesture = AbelGesture()   
+        self.model    = pinocchio.buildModelFromUrdf("/home/gabriele/catkin_ws/src/abel_move/scripts/abel_arms_full.urdf")
 
     def safety_check(self):
         """
         Check joint values for a safe initialization
         """
-        ## creare thread e gestione continua in loop
         # da sistemare per il check su motori 8,10,13,15 # LAB
 
-        biceps_l = self.abel.joint_states_msg.position[7]
-        forearm_l = self.abel.joint_states_msg.position[9]
-        biceps_r = self.abel.joint_states_msg.position[12]
-        forearm_r = self.abel.joint_states_msg.position[14]
+        biceps_l = abel.joint_states_msg.position[7]
+        forearm_l = abel.joint_states_msg.position[9]
+        biceps_r = abel.joint_states_msg.position[12]
+        forearm_r = abel.joint_states_msg.position[14]
 
         safety_data = [biceps_l, forearm_l, biceps_r, forearm_r]
 
@@ -43,7 +47,7 @@ class MoveAbelArms(object):
 
         if (biceps_l < -2.5 or biceps_l > 2):
             rospy.loginfo("Attenzione, bicipite in zona di instabilita. Riposizionamento sicuro ...")
-            self.gesture.neutral_high(10)
+            gesture.neutral_high(10)
 
     def initialize(self):
         """
@@ -58,8 +62,8 @@ class MoveAbelArms(object):
         rospy.loginfo("Checking joints for stability...")
         self.safety_check()
 
-        self.gesture.neutral_high(5) 
-        rospy.sleep(3)
+        gesture.neutral_high(5) 
+        rospy.sleep(5)
 
         rospy.loginfo("AbelMove Ready!")
 
@@ -67,19 +71,81 @@ class MoveAbelArms(object):
         """
         Compute the direct kinematics for left and right hand (end-effector) by using the URDF model
         """
-        q = self.abel.joint_states_msg.position
+        
+        
+        # Create data required by the algorithms
+        data     = self.model.createData()
+
+        q = self.abel.joint_states_msg.position[5:14]
         q = np.asarray(q)
 
-        pos_left = rbdl.CalcBodyToBaseCoordinates(self.model, q, 6, np.zeros(3))
-        pos_right = rbdl.CalcBodyToBaseCoordinates(self.model, q, 12, np.zeros(3))
-        rospy.loginfo("Posizioni end-effector: sx = "+pos_left+" dx = "+pos_right)
+        pinocchio.forwardKinematics(self.model,data,q)
 
-    def inverse_kinematics(self):
+        for name, oMi in zip(self.model.names, data.oMi):
+            print(("{:<24} : {: .2f} {: .2f} {: .2f}".format( name, *oMi.translation.T.flat )))
+
+    def inverse_kinematics(self, x, y, z):
         """Calculate the joint values for a desired cartesian position"""
-        ### MoveIT + URDF ### Work in progress
+        data  = self.model.createData()
 
+        JOINT_ID = 5
+        pose_des = pinocchio.SE3(np.eye(3), np.array([x, y, z]))
+
+        q = np.array(abel.sort_joints()[5:]) ##sostituire con joint_state_msg.position
+
+        eps    = 1e-1
+        IT_MAX = 1000
+        DT     = 1e-1
+        damp   = 1e-12
+
+        i=0
+        while True:
+            pinocchio.forwardKinematics(self.model,data,q)
+            dMi = pose_des.actInv(data.oMi[JOINT_ID])
+            err = pinocchio.log(dMi).vector
+            
+            if norm(err) < eps:
+                success = True
+                break
+            if i >= IT_MAX:
+                success = False
+                break
+            
+            J = pinocchio.computeJointJacobian(self.model,data,q,JOINT_ID)
+            v = - J.T.dot(solve(J.dot(J.T) + damp * np.eye(6), err))
+            
+            q = pinocchio.integrate(self.model,q,v*DT) ##joint_state?
+            
+            if not i % 10:
+                print('%d: error = %s' % (i, err.T))
+            i += 1
+
+        if success:
+            print("Convergence achieved!")
+        else:
+            print("\nWarning: the iterative algorithm has not reached convergence to the desired precision")
+
+        rospy.loginfo(q)
+
+        point = JointTrajectoryPoint()
+        point.positions = [  0,0,0,0,0,
+                            q[0],q[1],q[2],q[3],q[4],
+                            q[5],q[6],q[7],q[8],q[9] ]
+
+        abel.move_all_joints(point)
+
+        print('\nresult: %s' % q.flatten().tolist())
+        print('\nfinal error: %s' % err.T)
+
+    def collision_check():
+        """Controllo collisioni basato su cinematica diretta"""
+        ## creare thread e gestione continua in loop
+
+        q = abel.joint_states_msg.position[5:14]
+        #self.direct_kinematics()
+        
+        
 
 if __name__ == "__main__":
     rospy.init_node('MoveAbelArms', log_level=rospy.DEBUG)
     rate = rospy.Rate(10)
-    rospy.spin()

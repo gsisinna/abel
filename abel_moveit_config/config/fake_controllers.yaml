@@ -7,7 +7,6 @@ controller_list:
       - joint_D8
       - joint_D9
       - joint_D10
-      - joint_EE_L
   - name: fake_right_arm_controller
     type: $(arg execution_type)
     joints:
@@ -16,17 +15,16 @@ controller_list:
       - joint_D13
       - joint_D14
       - joint_D15
-      - joint_EE
-  - name: fake_right_hand_controller
+  - name: fake_left_ee_controller
     type: $(arg execution_type)
     joints:
-      - joint_EE
-  - name: fake_left_hand_controller
+      - joint_D10
+  - name: fake_right_ee_controller
     type: $(arg execution_type)
     joints:
-      - joint_EE_L
+      - joint_D15
 initial:  # Define initial robot poses.
   - group: left_arm
-    pose: neutral_left
+    pose: neutrale
   - group: right_arm
-    pose: neutral_right
+    pose: neutrale

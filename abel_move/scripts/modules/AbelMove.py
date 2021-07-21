@@ -6,6 +6,7 @@ from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from dynamixel_workbench_msgs.msg import DynamixelState, DynamixelStateList
 from dynamixel_workbench_msgs.srv import DynamixelCommand, DynamixelCommandRequest
 from std_msgs.msg import Header
+import numpy as np
 
 class AbelMove(object):
     def __init__(self):
@@ -18,7 +19,7 @@ class AbelMove(object):
         sub_dynamixel = rospy.Subscriber(self.dynamixel_state_topic_name, DynamixelStateList, self.get_motor)
 
         # We start the Publisher for the positions of the joints
-        self.goal_dynamixel_position_publisher = rospy.Publisher('/dynamixel_workbench/joint_trajectory', JointTrajectory, queue_size=1)
+        self.goal_dynamixel_position_publisher = rospy.Publisher('/dynamixel_workbench/joint_trajectory', JointTrajectory, queue_size=100)
 
         # Wait for the service client /joint_command to be running
         joint_command_service_name = "/dynamixel_workbench/dynamixel_command"
@@ -44,32 +45,72 @@ class AbelMove(object):
         """
         self.joint_states_msg = msg
 
-    def check_join_states_ready(self):
-        self.joint_states_msg = None
-        rospy.logdebug("Waiting for "+self.joint_states_topic_name+" to be READY...")
-        while self.joint_states_msg is None and not rospy.is_shutdown():
-            try:
-                self.joint_states_msg = rospy.wait_for_message(self.joint_states_topic_name, JointState, timeout=5.0)
-                rospy.logdebug("Current "+self.joint_states_topic_name+" READY=>")
 
-            except:
-                rospy.logerr("Current "+self.joint_states_topic_name+" not ready yet, retrying ")
+    def min_jerk(self, setpoint, frequency, move_time):
+        current = np.array(self.joint_states_msg.position)
+        timefreq = int(move_time * frequency)
 
-    def move_all_joints(self, point):
-        rospy.logwarn("move_all_joints STARTED")
-        
+        trajectory = []
+        trajectory_derivative = []
+
+        rospy.logwarn("Min_Jerk trajectory generation...")
+    
+        for time in range(1, timefreq):
+            trajectory.append(
+                current + (setpoint - current) *
+                (10.0 * (time/timefreq)**3
+                - 15.0 * (time/timefreq)**4
+                + 6.0 * (time/timefreq)**5))
+
+            trajectory_derivative.append(
+                frequency * (1.0/timefreq) * (setpoint - current) *
+                (30.0 * (time/timefreq)**2.0
+                - 60.0 * (time/timefreq)**3.0
+                + 30.0 * (time/timefreq)**4.0))
+
+
         joints_str = JointTrajectory()
         joints_str.header = Header()
         joints_str.header.stamp = rospy.Time.now()
         joints_str.joint_names = ['neck_1',      'neck_2',      'neck_3',   'neck_4',  'neck_5',
                                   'shoulder_l1', 'shoulder_l2', 'biceps_l', 'elbow_l', 'forearm_l', 
                                   'shoulder_r1', 'shoulder_r2', 'biceps_r', 'elbow_r', 'forearm_r' ]
+
+        rospy.logwarn("Waypoints generation...")
     
         #Adding the point to the points list
+        for i in range(1, timefreq-1):
+            point = JointTrajectoryPoint()
+            point.positions = np.around(trajectory[i], 2)
+
+            rospy.loginfo(point.positions)
+
+            point.velocities = np.around(trajectory_derivative[i],2)
+
+            rospy.loginfo(point.velocities)
+
+            point.time_from_start = rospy.Duration(move_time)      ##dipende da quanti punti prendiamo? testare
+            joints_str.points.append(point)
+            
+        self.goal_dynamixel_position_publisher.publish(joints_str)
+
+        rospy.logwarn("Trajectory published!")
+
+        rospy.loginfo(joints_str)
+
+
+    def move_all_joints(self, point):
+        joints_str = JointTrajectory()
+        joints_str.header = Header()
+        joints_str.header.stamp = rospy.Time.now()
+
+        joints_str.joint_names = ['neck_1',      'neck_2',      'neck_3',   'neck_4',  'neck_5',
+                                  'shoulder_l1', 'shoulder_l2', 'biceps_l', 'elbow_l', 'forearm_l', 
+                                  'shoulder_r1', 'shoulder_r2', 'biceps_r', 'elbow_r', 'forearm_r' ]
+    
         joints_str.points.append(point)
         self.goal_dynamixel_position_publisher.publish(joints_str)
 
-        rospy.logwarn("move_all_joints FINISHED")
 
 
     def move_one_joint(self, joint_id, position, unit="rad"):
@@ -97,6 +138,10 @@ class AbelMove(object):
 
         result = self.joint_command_service(joint_cmd_req)
         rospy.logwarn("move_one_joint went ok?="+str(result))
+
+    def goal_all_joints(self, positions):
+        for i in range(15):
+            self.move_one_joint(i, positions[i], "rad")
 
 
     def send_command(self, id, addr_name, value):

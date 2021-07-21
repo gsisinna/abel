@@ -57,6 +57,7 @@ add_message_files(
   FILES
   gesture.msg
   lookat.msg
+  neck_joints.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -216,22 +217,22 @@ catkin_install_python(PROGRAMS
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-catkin_install_python(PROGRAMS script/main.py
+catkin_install_python(PROGRAMS scripts/main.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
-catkin_install_python(PROGRAMS script/MoveAbelArms.py
+catkin_install_python(PROGRAMS scripts/MoveAbelArms.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
-catkin_install_python(PROGRAMS script/MoveAbelNeck.py
+catkin_install_python(PROGRAMS scripts/MoveAbelNeck.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
-catkin_install_python(PROGRAMS script//modules/AbelMove.py
+catkin_install_python(PROGRAMS scripts//modules/AbelMove.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
-catkin_install_python(PROGRAMS script/modules/AbelGesture.py
+catkin_install_python(PROGRAMS scripts/modules/AbelGesture.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

@@ -21,6 +21,9 @@ class AbelGesture(object):
         # We start the Publisher for the topic created
         self.gesture_pub = rospy.Publisher('/abel_move/arms/gesture', String, queue_size=10)
 
+    def gesture_arms_list(self):
+        rospy.loginfo("Gesture available: neutral, neutral_high, zero, mano, hug, hello, up_right_arm, movement_sequence_test.")
+
     def neutral_pose(self, duration):
         """ Neutrale"""
         self.joint_position_home = JointTrajectoryPoint()
@@ -58,7 +61,7 @@ class AbelGesture(object):
         """ Stretta di mano """
         self.joint_position_hand = JointTrajectoryPoint()
         self.joint_position_hand.positions = [-0.003067961661145091, 0.15186409652233124, -0.3604854941368103, -0.5645049214363098, 0.8774370551109314, 
-                                             -0.22549518942832947, -0.010737866163253784, -1.4434759616851807, 0.9295923709869385, 1.274738073348999, 
+                                             -0.22549518942832947, -0.010737866163253784, -0.5, 0.9295923709869385, 1.274738073348999, 
                                              -1.3543108320236206, 0.10737866163253784, 0.9449321627616882, 0.2684466540813446, -0.6563301706314087]
 
         self.joint_position_hand.velocities = [0, 0, 0, 0, 0,
@@ -97,24 +100,21 @@ class AbelGesture(object):
         """Saluto"""
         self.joint_position_hello = JointTrajectoryPoint()
         self.joint_position_hello.positions = [-0.003067961661145091, 0.15186409652233124, -0.3604854941368103, -0.5645049214363098, 0.8774370551109314,
-                                      -0.47400006651878357, -0.09050486981868744, -0.08283496648073196, 0.8774370551109314, 
-                                       0.47400006651878357, -2.015650749206543, -1.0707186460494995, -0.019941750913858414, -2.885417938232422]
+                                      -0.4, -0.18254372477531433, 0.18561168015003204, 0.7501166462898254, 0.0, 
+                                      -1.8208352327346802, -1.9496896266937256, -0.2653786838054657, 0.7761942744255066]
 
         self.joint_position_hello.time_from_start = rospy.Duration(duration)
         self.abel.move_all_joints(self.joint_position_hello)
         self.gesture_pub.publish("hello_pose")
 
-
-    def up_right_arm(self, duration):
-        """Zero joints"""
-        self.joint_position_zero = JointTrajectoryPoint()
-        self.joint_position_zero.positions = [0,   -0.25,   0.25, -0.25, 0.25, 
-                                     0.37582531571388245, 0.14879614114761353, -2.7243499755859375, 0.8084079027175903, 0.26998063921928406, 
-                                     -1.522335815429688, -1.0753206014633179, 0.452524334192276, 0.7900001406669617, -1.3]
-
-        self.joint_position_zero.time_from_start = rospy.Duration(duration)
-        self.abel.move_all_joints(self.joint_position_zero)
-        self.gesture_pub.publish("up_right_arm")
+    def test_14(self, duration):
+        self.joint_test14 = JointTrajectoryPoint()
+        self.joint_test14.positions = [0, 0, 0, 0, 0,
+                                        0, 0, 0, 0, 0,
+                                        0, 0, 0, 0, 0]
+        self.joint_test14.time_from_start = rospy.Duration(duration)
+        self.abel.move_all_joints(self.joint_test14)
+        self.gesture_pub.publish("Test_14")
 
 
     def movement_sequence_test(self, time):
@@ -138,7 +138,8 @@ class AbelGesture(object):
         rospy.sleep(time)
 
 
+
+
 if __name__ == "__main__":
     rospy.init_node('AbelGesture', log_level=rospy.DEBUG)
     rate = rospy.Rate(10)
-    rospy.spin()
