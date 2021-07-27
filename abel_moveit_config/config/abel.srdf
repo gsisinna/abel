@@ -33,30 +33,24 @@
         <joint name="joint_D14"/>
         <joint name="joint_D15"/>
     </group>
-    <group name="left_ee">
-        <link name="link_D10_EE"/>
-    </group>
-    <group name="right_ee">
-        <link name="link_D15_EE"/>
-    </group>
     <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
-    <group_state name="neutrale" group="right_arm">
-        <joint name="joint_D11" value="0"/>
-        <joint name="joint_D12" value="0"/>
-        <joint name="joint_D13" value="0"/>
-        <joint name="joint_D14" value="0"/>
-        <joint name="joint_D15" value="0"/>
-    </group_state>
-    <group_state name="neutrale" group="left_arm">
+    <group_state name="neutral" group="left_arm">
         <joint name="joint_D10" value="0"/>
         <joint name="joint_D6" value="0"/>
         <joint name="joint_D7" value="0"/>
         <joint name="joint_D8" value="0"/>
         <joint name="joint_D9" value="0"/>
     </group_state>
+    <group_state name="neutral" group="right_arm">
+        <joint name="joint_D11" value="0"/>
+        <joint name="joint_D12" value="0"/>
+        <joint name="joint_D13" value="0"/>
+        <joint name="joint_D14" value="0"/>
+        <joint name="joint_D15" value="0"/>
+    </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-    <end_effector name="left_ee" parent_link="link_D10_EE" group="left_ee"/>
-    <end_effector name="right_ee" parent_link="link_D15_EE" group="right_ee"/>
+    <end_effector name="left_ee" parent_link="link_D10_EE" group="left_arm"/>
+    <end_effector name="right_ee" parent_link="link_D15_EE" group="right_arm"/>
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="base_link" link2="link_D11_D12" reason="Adjacent"/>
     <disable_collisions link1="base_link" link2="link_D12_D13" reason="Never"/>
@@ -68,13 +62,12 @@
     <disable_collisions link1="base_link" link2="link_D9_D10" reason="Never"/>
     <disable_collisions link1="link_D10_EE" link2="link_D11_D12" reason="Never"/>
     <disable_collisions link1="link_D10_EE" link2="link_D12_D13" reason="Never"/>
-    <disable_collisions link1="link_D10_EE" link2="link_D13_D14" reason="Never"/>
-    <disable_collisions link1="link_D10_EE" link2="link_D14_D15" reason="Never"/>
     <disable_collisions link1="link_D10_EE" link2="link_D6_D7" reason="Never"/>
     <disable_collisions link1="link_D10_EE" link2="link_D7_D8" reason="Never"/>
+    <disable_collisions link1="link_D10_EE" link2="link_D8_D9" reason="Never"/>
     <disable_collisions link1="link_D10_EE" link2="link_D9_D10" reason="Adjacent"/>
     <disable_collisions link1="link_D11_D12" link2="link_D12_D13" reason="Adjacent"/>
-    <disable_collisions link1="link_D11_D12" link2="link_D13_D14" reason="Default"/>
+    <disable_collisions link1="link_D11_D12" link2="link_D13_D14" reason="Never"/>
     <disable_collisions link1="link_D11_D12" link2="link_D14_D15" reason="Never"/>
     <disable_collisions link1="link_D11_D12" link2="link_D15_EE" reason="Never"/>
     <disable_collisions link1="link_D11_D12" link2="link_D6_D7" reason="Never"/>
@@ -89,6 +82,7 @@
     <disable_collisions link1="link_D12_D13" link2="link_D8_D9" reason="Never"/>
     <disable_collisions link1="link_D12_D13" link2="link_D9_D10" reason="Never"/>
     <disable_collisions link1="link_D13_D14" link2="link_D14_D15" reason="Adjacent"/>
+    <disable_collisions link1="link_D13_D14" link2="link_D15_EE" reason="Never"/>
     <disable_collisions link1="link_D13_D14" link2="link_D6_D7" reason="Never"/>
     <disable_collisions link1="link_D13_D14" link2="link_D7_D8" reason="Never"/>
     <disable_collisions link1="link_D13_D14" link2="link_D8_D9" reason="Never"/>
@@ -100,10 +94,8 @@
     <disable_collisions link1="link_D14_D15" link2="link_D9_D10" reason="Never"/>
     <disable_collisions link1="link_D15_EE" link2="link_D6_D7" reason="Never"/>
     <disable_collisions link1="link_D15_EE" link2="link_D7_D8" reason="Never"/>
-    <disable_collisions link1="link_D15_EE" link2="link_D8_D9" reason="Never"/>
-    <disable_collisions link1="link_D15_EE" link2="link_D9_D10" reason="Never"/>
     <disable_collisions link1="link_D6_D7" link2="link_D7_D8" reason="Adjacent"/>
-    <disable_collisions link1="link_D6_D7" link2="link_D8_D9" reason="Default"/>
+    <disable_collisions link1="link_D6_D7" link2="link_D8_D9" reason="Never"/>
     <disable_collisions link1="link_D6_D7" link2="link_D9_D10" reason="Never"/>
     <disable_collisions link1="link_D7_D8" link2="link_D8_D9" reason="Adjacent"/>
     <disable_collisions link1="link_D7_D8" link2="link_D9_D10" reason="Never"/>

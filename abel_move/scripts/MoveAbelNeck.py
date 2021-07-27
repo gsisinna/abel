@@ -7,13 +7,15 @@ from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from dynamixel_workbench_msgs.msg import DynamixelState, DynamixelStateList
 from dynamixel_workbench_msgs.srv import DynamixelCommand, DynamixelCommandRequest
 from std_msgs.msg import Header
+from std_msgs.msg import String
+
 from std_msgs.msg import Float64
 from std_msgs.msg import Float64MultiArray
-#from abel_move.msg import neck_joints
 from matplotlib import pyplot as plt
 
-from modules.AbelMove import *
-from modules.AbelGesture import *
+
+from abel_move.AbelGesture import AbelGesture
+from abel_move.AbelMove import AbelMove
 
 abel = AbelMove()
 gesture = AbelGesture()
@@ -25,12 +27,7 @@ class MoveAbelNeck(object):
         abel = AbelMove()
         gesture = AbelGesture()
 
-        self.neck_gesture_topic = '/abel_move/neck/gesture'
-        self.neck_gesture_save = '/abel_move/neck/gesture/save'
-        self.lookat_topic = '/abel_move/neck/lookat'
-
         self.neck_gesture_pub = rospy.Publisher('/abel_move/neck/gesture', String, queue_size=1)
-        self.neck_save_pub = rospy.Publisher('/abel_move/neck/gesture/save', String, queue_size=1)
         self.lookat_pub = rospy.Publisher('/abel_move/neck/lookat', Float64MultiArray, queue_size=1)
 
     def initialize(self):

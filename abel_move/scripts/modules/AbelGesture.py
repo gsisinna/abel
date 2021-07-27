@@ -8,7 +8,7 @@ from dynamixel_workbench_msgs.srv import DynamixelCommand, DynamixelCommandReque
 from std_msgs.msg import Header
 from std_msgs.msg import String
 
-from .AbelMove import *
+from abel_move.AbelMove import *
 
 class AbelGesture(object):
     def __init__(self):

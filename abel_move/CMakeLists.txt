@@ -9,13 +9,11 @@ project(abel_move)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   cmake_modules
-  eigen
   geometry_msgs
   roscpp
   rospy
   sensor_msgs
   trajectory_msgs
-  yaml-cpp
   message_generation
 )
 
@@ -57,7 +55,6 @@ add_message_files(
   FILES
   gesture.msg
   lookat.msg
-  neck_joints.msg
 )
 
 ## Generate services in the 'srv' folder
