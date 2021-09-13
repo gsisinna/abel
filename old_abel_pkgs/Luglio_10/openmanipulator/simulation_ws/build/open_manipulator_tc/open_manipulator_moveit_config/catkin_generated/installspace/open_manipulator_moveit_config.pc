@@ -1,0 +1,8 @@
+prefix=/home/user/simulation_ws/install
+
+Name: open_manipulator_moveit_config
+Description: Description of open_manipulator_moveit_config
+Version: 0.5.1
+Cflags: -I/home/user/simulation_ws/install/include
+Libs: -L/home/user/simulation_ws/install/lib -lopen_manipulator_moveit_config
+Requires: moveit_ros_planning trajectory_msgs

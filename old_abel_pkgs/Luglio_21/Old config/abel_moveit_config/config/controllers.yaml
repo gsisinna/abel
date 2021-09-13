@@ -1,0 +1,5 @@
+controller_list:
+  - name: "dynamixel_workbench/joint_trajectory"
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    joints: [joint_D6, joint_D7, joint_D8, joint_D9, joint_D10, joint_D11, joint_D12, joint_D13, joint_D14, joint_D15]

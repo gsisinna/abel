@@ -1,0 +1,18 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/gabriele/catkin_ws/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages",
+        "/home/gabriele/abel-env/lib/rbdl-orb/build/python",
+        "/home/gabriele/catkin_ws/src/abel_move/scripts/modules",
+        "/home/gabriele/catkin_ws/src/abel_move/scripts",
+        "/home/gabriele/catkin_ws/src/abel_move/src/abel_move",
+        "/home/gabriele/catkin_ws/src/"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/gabriele/catkin_ws/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages",
+        "/home/gabriele/abel-env/lib/rbdl-orb/build/python",
+        "/home/gabriele/catkin_ws/src/abel_move/scripts/modules",
+        "/home/gabriele/catkin_ws/src/abel_move/src/abel_move"
+    ]
+}

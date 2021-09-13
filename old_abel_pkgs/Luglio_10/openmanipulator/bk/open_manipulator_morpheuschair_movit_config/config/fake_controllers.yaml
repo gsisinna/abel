@@ -1,0 +1,13 @@
+controller_list:
+  - name: fake_openmanipulator_arm_controller
+    joints:
+      - id_1
+      - id_2
+      - id_3
+      - id_4
+      - id_5
+  - name: fake_gripper_controller
+    joints:
+      - id_6
+      - joint8
+      - joint9

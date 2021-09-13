@@ -1,0 +1,8 @@
+prefix=/home/user/catkin_ws/install
+
+Name: open_manipulator_morpheuschair_movit_config
+Description: Description of open_manipulator_morpheuschair_movit_config
+Version: 0.3.0
+Cflags: 
+Libs: -L/home/user/catkin_ws/install/lib 
+Requires: 

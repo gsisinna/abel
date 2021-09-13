@@ -1,0 +1,2 @@
+string gesture
+float64 duration
