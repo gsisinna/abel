@@ -1,2 +1,2 @@
 # Abel
-Design and implementation of a bio-inspired control system for social humanoid robot
+Design and implementation of a bio-inspired motor control system for social humanoid robot.
