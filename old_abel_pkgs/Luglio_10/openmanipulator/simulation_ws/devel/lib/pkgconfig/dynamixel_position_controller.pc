@@ -1,8 +1,0 @@
-prefix=/home/user/simulation_ws/devel
-
-Name: dynamixel_position_controller
-Description: Description of dynamixel_position_controller
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/user/simulation_ws/devel/lib 
-Requires: 

@@ -1,8 +1,0 @@
-prefix=/home/user/simulation_ws/install
-
-Name: dynamixel_position_controller
-Description: Description of dynamixel_position_controller
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/user/simulation_ws/install/lib 
-Requires: 

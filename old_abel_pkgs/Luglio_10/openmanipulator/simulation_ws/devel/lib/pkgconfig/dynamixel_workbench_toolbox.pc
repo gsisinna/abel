@@ -1,8 +1,0 @@
-prefix=/home/user/simulation_ws/devel
-
-Name: dynamixel_workbench_toolbox
-Description: Description of dynamixel_workbench_toolbox
-Version: 1.0.0
-Cflags: -I/home/user/simulation_ws/src/open_manipulator_tc/dynamixel-workbench/dynamixel_workbench_toolbox/include
-Libs: -L/home/user/simulation_ws/devel/lib -ldynamixel_workbench_toolbox
-Requires: roscpp dynamixel_sdk

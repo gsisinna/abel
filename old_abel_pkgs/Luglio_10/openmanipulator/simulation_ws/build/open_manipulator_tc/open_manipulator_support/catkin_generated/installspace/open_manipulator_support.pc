@@ -1,8 +1,0 @@
-prefix=/home/user/simulation_ws/install
-
-Name: open_manipulator_support
-Description: Description of open_manipulator_support
-Version: 0.0.0
-Cflags: -I/usr/include/eigen3
-Libs: -L/home/user/simulation_ws/install/lib 
-Requires: roscpp std_msgs sensor_msgs geometry_msgs

@@ -1,8 +1,0 @@
-prefix=/home/user/simulation_ws/devel
-
-Name: dynamixel_workbench_controllers
-Description: Description of dynamixel_workbench_controllers
-Version: 1.0.0
-Cflags: -I/home/user/simulation_ws/src/open_manipulator_tc/dynamixel-workbench/dynamixel_workbench_controllers/include
-Libs: -L/home/user/simulation_ws/devel/lib 
-Requires: roscpp sensor_msgs geometry_msgs dynamixel_workbench_msgs dynamixel_workbench_toolbox

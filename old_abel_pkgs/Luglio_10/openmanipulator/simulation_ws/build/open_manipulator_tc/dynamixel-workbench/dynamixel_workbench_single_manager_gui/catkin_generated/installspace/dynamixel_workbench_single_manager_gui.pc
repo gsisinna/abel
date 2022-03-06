@@ -1,8 +1,0 @@
-prefix=/home/user/simulation_ws/install
-
-Name: dynamixel_workbench_single_manager_gui
-Description: Description of dynamixel_workbench_single_manager_gui
-Version: 1.0.0
-Cflags: -I/home/user/simulation_ws/install/include
-Libs: -L/home/user/simulation_ws/install/lib 
-Requires: roscpp dynamixel_workbench_msgs dynamixel_workbench_toolbox
