@@ -31,8 +31,6 @@ class MoveAbelArms(object):
         """
         Check joint values for a safe initialization
         """
-        # da sistemare per il check su motori 8,10,13,15 # LAB
-
         biceps_l = abel.joint_states_msg.position[7]
         forearm_l = abel.joint_states_msg.position[9]
         biceps_r = abel.joint_states_msg.position[12]
@@ -52,9 +50,9 @@ class MoveAbelArms(object):
         """
         rospy.loginfo("AbelMove INIT...Please wait")
 
-        # rospy.loginfo("Launching Dynamixel Controller...")
-        # os.system("roslaunch dynamixel_workbench_controllers dynamixel_controllers.launch")
-        # rospy.sleep(3)
+        rospy.loginfo("Launching Dynamixel Controller...")
+        os.system("roslaunch dynamixel_workbench_controllers dynamixel_controllers.launch")
+        rospy.sleep(3)
         
         rospy.loginfo("Checking joints for stability...")
         self.safety_check()
@@ -128,16 +126,6 @@ class MoveAbelArms(object):
         abel.move_all_joints(point)
 
         self.direct_kinematics()
-
-
-    def collision_check():
-        """Controllo collisioni basato su cinematica diretta"""
-        ## creare thread e gestione continua in loop
-
-        q = abel.joint_states_msg.position[5:14]
-        #self.direct_kinematics()
-        
-        
 
 if __name__ == "__main__":
     rospy.init_node('MoveAbelArms', log_level=rospy.DEBUG)

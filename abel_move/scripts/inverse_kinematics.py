@@ -5,7 +5,6 @@ from numpy.linalg import norm, solve
  
 import pinocchio
  
-#model = pinocchio.buildSampleModelManipulator()
 model, collision_model, visual_model = pinocchio.buildModelsFromUrdf("/home/gabriele/catkin_ws/src/abel_move/scripts/abel_arms_full.urdf")
 data, collision_data, visual_data  = pinocchio.createDatas(model, collision_model, visual_model)
  
