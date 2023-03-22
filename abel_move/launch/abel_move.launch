@@ -1,7 +1,7 @@
 <launch>
-  <node name="main" pkg="abel_move" type="main.py" output="screen"/>
-  <node name="MoveAbelArms" pkg="abel_move" type="MoveAbelArms.py" output="screen"/>
-  <node name="MoveAbelNeck" pkg="abel_move" type="MoveAbelNeck.py" output="screen"/>
-  <node name="AbelGesture" pkg="abel_move" type="AbelGesture.py" output="screen"/>
-  <node name="AbelMove" pkg="abel_move" type="AbelMove.py" output="screen"/>
+  <node name="main" pkg="abel_move" type="main.py" output="screen" />
+  <node name="MoveAbelArms" pkg="abel_move" type="MoveAbelArms.py" output="screen" />
+  <node name="MoveAbelNeck" pkg="abel_move" type="MoveAbelNeck.py" output="screen" />
+  <node name="AbelGesture" pkg="abel_move" type="AbelGesture.py" output="screen" />
+  <node name="AbelMove" pkg="abel_move" type="AbelMove.py" output="screen" />
 </launch>

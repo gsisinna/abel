@@ -17,157 +17,163 @@
   </link>
 
   <joint name="joint_D6" type="revolute">
-    <parent link="link_torso"/>
-    <child link="link_D6_D7"/>
+    <parent link="link_torso" />
+    <child link="link_D6_D7" />
     <origin xyz="-0.10 0 0" rpy="0 -1.57 0" />
     <axis xyz="0 0 1" />
-    <limit effort="300" lower="-3.14" upper="0.261799" velocity="10"/>
-    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-3.15" soft_upper_limit="0.27"/>
-    <dynamics damping="0.5"/>
+    <limit effort="300" lower="-3.14" upper="0.261799" velocity="10" />
+    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-3.15"
+      soft_upper_limit="0.27" />
+    <dynamics damping="0.5" />
   </joint>
 
   <link name="link_D6_D7">
     <visual>
       <geometry>
-        <cylinder length="0.07" radius="0.04"/>
+        <cylinder length="0.07" radius="0.04" />
       </geometry>
       <material name="blue">
-        <color rgba="0 0 .8 1"/>
+        <color rgba="0 0 .8 1" />
       </material>
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.07" radius="0.04"/>
+        <cylinder length="0.07" radius="0.04" />
       </geometry>
     </collision>
   </link>
 
   <joint name="joint_D7" type="revolute">
-    <parent link="link_D6_D7"/>
-    <child link="link_D7_D8"/>
+    <parent link="link_D6_D7" />
+    <child link="link_D7_D8" />
     <origin xyz="0 0 0.08" rpy="-1.57 -1.57 0" />
     <axis xyz="0 0 1" />
-    <limit effort="300" lower="-0.0872665" upper="2.96706" velocity="10"/>
-    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-0.09" soft_upper_limit="2.97"/>
-    <dynamics damping="0.5"/>
+    <limit effort="300" lower="-0.0872665" upper="2.96706" velocity="10" />
+    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-0.09"
+      soft_upper_limit="2.97" />
+    <dynamics damping="0.5" />
   </joint>
 
   <link name="link_D7_D8">
     <visual>
       <geometry>
-        <cylinder length="0.07" radius="0.04"/>
+        <cylinder length="0.07" radius="0.04" />
       </geometry>
       <material name="blue">
-        <color rgba="0 0 .8 1"/>
+        <color rgba="0 0 .8 1" />
       </material>
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.07" radius="0.04"/>
+        <cylinder length="0.07" radius="0.04" />
       </geometry>
     </collision>
   </link>
 
   <joint name="joint_D8" type="revolute">
-    <parent link="link_D7_D8"/>
-    <child link="link_D8_D9"/>
+    <parent link="link_D7_D8" />
+    <child link="link_D8_D9" />
     <origin xyz="0 -0.095 0" rpy="-1.57 3.14 0" />
     <axis xyz="0 0 1" />
-    <limit effort="300" lower="-2.18166" upper="0.610865" velocity="10"/>
-    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-2.19" soft_upper_limit="0.62"/>
-    <dynamics damping="0.5"/>
+    <limit effort="300" lower="-2.18166" upper="0.610865" velocity="10" />
+    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-2.19"
+      soft_upper_limit="0.62" />
+    <dynamics damping="0.5" />
   </joint>
 
   <link name="link_D8_D9">
     <visual>
       <geometry>
-        <cylinder length="0.08" radius="0.04"/>
+        <cylinder length="0.08" radius="0.04" />
       </geometry>
       <material name="blue">
-        <color rgba="0 0 .8 1"/>
+        <color rgba="0 0 .8 1" />
       </material>
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.08" radius="0.04"/>
+        <cylinder length="0.08" radius="0.04" />
       </geometry>
     </collision>
   </link>
 
   <joint name="joint_D9" type="revolute">
-    <parent link="link_D8_D9"/>
-    <child link="link_D9_D10"/>
+    <parent link="link_D8_D9" />
+    <child link="link_D9_D10" />
     <origin xyz="0 0 -0.125" rpy="0 -1.57 3.14" />
     <axis xyz="0 0 1" />
-    <limit effort="300" lower="0" upper="2.26893" velocity="10"/>
-    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-0.1" soft_upper_limit="2.27"/>
-    <dynamics damping="0.5"/>
+    <limit effort="300" lower="0" upper="2.26893" velocity="10" />
+    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-0.1"
+      soft_upper_limit="2.27" />
+    <dynamics damping="0.5" />
   </joint>
 
   <link name="link_D9_D10">
     <visual>
       <geometry>
-        <cylinder length="0.08" radius="0.03"/>
+        <cylinder length="0.08" radius="0.03" />
       </geometry>
       <material name="blue">
-        <color rgba="0 0 .8 1"/>
+        <color rgba="0 0 .8 1" />
       </material>
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.08" radius="0.03"/>
+        <cylinder length="0.08" radius="0.03" />
       </geometry>
     </collision>
   </link>
 
   <joint name="joint_D10" type="revolute">
-    <parent link="link_D9_D10"/>
-    <child link="link_D10_EE"/>
+    <parent link="link_D9_D10" />
+    <child link="link_D10_EE" />
     <origin xyz="-0.065 0 0" rpy="3.14 -1.57 0" />
     <axis xyz="0 0 1" />
-    <limit effort="300" lower="-1.48353" upper="0.523599" velocity="10"/>
-    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-1.49" soft_upper_limit="0.53"/>
-    <dynamics damping="0.5"/>
+    <limit effort="300" lower="-1.48353" upper="0.523599" velocity="10" />
+    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-1.49"
+      soft_upper_limit="0.53" />
+    <dynamics damping="0.5" />
   </joint>
 
   <link name="link_D10_EE">
     <visual>
       <geometry>
-        <cylinder length="0.06" radius="0.03"/>
+        <cylinder length="0.06" radius="0.03" />
       </geometry>
       <material name="blue">
-        <color rgba="0 0 .8 1"/>
+        <color rgba="0 0 .8 1" />
       </material>
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.06" radius="0.03"/>
+        <cylinder length="0.06" radius="0.03" />
       </geometry>
     </collision>
   </link>
 
   <joint name="joint_EE" type="revolute">
-    <parent link="link_D10_EE"/>
-    <child link="link_EE"/>
+    <parent link="link_D10_EE" />
+    <child link="link_EE" />
     <origin xyz="0 0 -0.30" rpy="0 1.57 0" />
     <axis xyz="0 0 1" />
-    <limit effort="300" lower="-2.09439510239" upper="2.09439510239" velocity="10"/>
-    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-2.1" soft_upper_limit="2.1"/>
-    <dynamics damping="0.5"/>
+    <limit effort="300" lower="-2.09439510239" upper="2.09439510239" velocity="10" />
+    <safety_controller k_position="100" k_velocity="2" soft_lower_limit="-2.1"
+      soft_upper_limit="2.1" />
+    <dynamics damping="0.5" />
   </joint>
 
   <link name="link_EE">
     <visual>
       <geometry>
-        <cylinder length="0.06" radius="0.04"/>
+        <cylinder length="0.06" radius="0.04" />
       </geometry>
       <material name="blue">
-        <color rgba="0 0 .8 1"/>
+        <color rgba="0 0 .8 1" />
       </material>
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.06" radius="0.04"/>
+        <cylinder length="0.06" radius="0.04" />
       </geometry>
     </collision>
   </link>
